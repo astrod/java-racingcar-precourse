@@ -2,6 +2,9 @@ package input;
 
 import java.util.Scanner;
 
+import player.Player;
+import racingtrack.PlayerGroup;
+
 public class Display {
 	private final Scanner scanner;
 
@@ -14,7 +17,7 @@ public class Display {
 
 		while (true) {
 			try {
-				return scanner.next();
+				return scanner.nextLine();
 			} catch (Exception ex) {
 				System.out.println("자동차 이름 입력을 실패했습니다. 다시 시도해 주세요");
 			}
@@ -26,10 +29,30 @@ public class Display {
 
 		while (true) {
 			try {
-				return Integer.parseInt(scanner.next());
+				return Integer.parseInt(scanner.nextLine());
 			} catch (Exception ex) {
 				System.out.println("횟수 입력을 실패했습니다. 다시 시도해 주세요");
 			}
 		}
+	}
+
+	public void showCarPosition(PlayerGroup playerGroup) {
+		for (Player eachPlayer : playerGroup.getPlayers()) {
+			System.out.println(eachPlayer.getName() + " : " + makeProgressBar(eachPlayer.getPosition()));
+		}
+		System.out.println();
+	}
+
+	private String makeProgressBar(int position) {
+		StringBuilder stringBuilder = new StringBuilder();
+		for (int i = 0; i < position; i++) {
+			stringBuilder.append("-");
+		}
+
+		return stringBuilder.toString();
+	}
+
+	public void showExecutionResult() {
+		System.out.println("실행 결과");
 	}
 }

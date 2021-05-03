@@ -1,9 +1,19 @@
 package racingtrack;
 
 public class RacingCount {
-	private final int racingCount;
+	private final int racingGoalCount;
+	private int currentCount;
 
-	public RacingCount(int racingCount) {
-		this.racingCount = racingCount;
+	public RacingCount(int racingGoalCount) {
+		this.racingGoalCount = racingGoalCount;
+		this.currentCount = 0;
+	}
+
+	public boolean isContinue() {
+		return currentCount < racingGoalCount;
+	}
+
+	public void increaseCurrentCount() {
+		this.currentCount++;
 	}
 }
