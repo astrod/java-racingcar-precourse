@@ -1,21 +1,17 @@
-package racingtrack;
+package player;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
-import player.Player;
-
 public class PlayerGroup {
 	private static final String DELIMITER = ",";
 
 	private final List<Player> players;
-	private final Random random;
 
-	public PlayerGroup(String players, Random random) {
+	public PlayerGroup(String players) {
 		this.players = initializePlayers(players);
-		this.random = random;
 	}
 
 	private List<Player> initializePlayers(String players) {
@@ -29,7 +25,7 @@ public class PlayerGroup {
 	private List<Player> makePlayers(List<String> playerNames) {
 		List<Player> result = new ArrayList<>();
 		for (String eachName : playerNames) {
-			result.add(new Player(eachName));
+			result.add(new Player(eachName, 0));
 		}
 
 		return result;
@@ -39,9 +35,13 @@ public class PlayerGroup {
 		return players;
 	}
 
-	public void advance() {
+	public void advance(Random random) {
 		for (Player eachPlayer : this.players) {
 			eachPlayer.advance(random);
 		}
+	}
+
+	public Winner generateWinner() {
+		return new Winner(this.players);
 	}
 }

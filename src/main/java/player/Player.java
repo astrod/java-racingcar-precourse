@@ -3,12 +3,15 @@ package player;
 import java.util.Random;
 
 public class Player {
+	private static final int EXCLUSIVE_RANDOM_BOUNDARY = 9;
+	protected static final int BOUNDARY_FOR_MOVE = 4;
+
 	private final String name;
 	private int position;
 
-	public Player(String name) {
+	public Player(String name, int position) {
 		this.name = name.trim();
-		this.position = 0;
+		this.position = position;
 	}
 
 	public String getName() {
@@ -20,6 +23,15 @@ public class Player {
 	}
 
 	public void advance(Random random) {
-		position++; // TODO 이 부분에 랜덤값을 활용하여 이동시키는 로직이 추가되어야 한다
+		position += seeItMoveOrNot(random);
+	}
+
+	private int seeItMoveOrNot(Random random) {
+		int randomValue = random.nextInt(EXCLUSIVE_RANDOM_BOUNDARY);
+		if (randomValue < BOUNDARY_FOR_MOVE) {
+			return 0;
+		}
+
+		return 1;
 	}
 }

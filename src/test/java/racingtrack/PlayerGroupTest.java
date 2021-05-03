@@ -12,6 +12,8 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import player.Player;
+import player.PlayerGroup;
+import player.Winner;
 
 class PlayerGroupTest {
 	@Mock
@@ -30,7 +32,7 @@ class PlayerGroupTest {
 		// when
 
 		// then
-		assertThatIllegalArgumentException().isThrownBy(() -> new PlayerGroup(null, this.random));
+		assertThatIllegalArgumentException().isThrownBy(() -> new PlayerGroup(null));
 	}
 
 	@Test
@@ -39,7 +41,7 @@ class PlayerGroupTest {
 		// given
 
 		// when
-		PlayerGroup result = new PlayerGroup("testUser", this.random);
+		PlayerGroup result = new PlayerGroup("testUser");
 
 		// then
 		assertThat(result.getPlayers().get(0).getName()).isEqualTo("testUser");
@@ -52,7 +54,7 @@ class PlayerGroupTest {
 		// given
 
 		// when
-		PlayerGroup result = new PlayerGroup("testUser,testUser2", this.random);
+		PlayerGroup result = new PlayerGroup("testUser,testUser2");
 
 		// then
 		assertThat(result.getPlayers().get(0).getName()).isEqualTo("testUser");
@@ -63,17 +65,32 @@ class PlayerGroupTest {
 	@Test
 	@DisplayName("advance 호출시 각 player 는 advance 가 진행되어야 한다")
 	void advanceShouldProgressOnCallingAdvance() {
-		given(random.nextInt()).willReturn(1);
+		given(random.nextInt(anyInt())).willReturn(4);
 
 		// given
-		PlayerGroup playerGroup = new PlayerGroup("testUser,testUser2,testUser3", this.random);
+		PlayerGroup playerGroup = new PlayerGroup("testUser,testUser2,testUser3");
 
 		// when
-		playerGroup.advance();
+		playerGroup.advance(random);
 
 		// then
 		for (Player eachPlayer : playerGroup.getPlayers()) {
 			assertThat(eachPlayer.getPosition()).isEqualTo(1);
 		}
+	}
+
+	@Test
+	@DisplayName("winner 생성을 요청하면 우승자 데이터를 반환해야 한다")
+	void generateWinner() {
+		given(random.nextInt(anyInt())).willReturn(4);
+
+		// given
+		PlayerGroup playerGroup = new PlayerGroup("testUser,testUser2,testUser3");
+
+		// when
+		Winner winner = playerGroup.generateWinner();
+
+		// then
+		assertThat(winner.getWinnerName()).isEqualTo("testUser, testUser2, testUser3");
 	}
 }

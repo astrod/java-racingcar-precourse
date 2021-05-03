@@ -3,7 +3,8 @@ package input;
 import java.util.Scanner;
 
 import player.Player;
-import racingtrack.PlayerGroup;
+import player.PlayerGroup;
+import player.Winner;
 
 public class Display {
 	private final Scanner scanner;
@@ -54,5 +55,9 @@ public class Display {
 
 	public void showExecutionResult() {
 		System.out.println("실행 결과");
+	}
+
+	public void showWinner(Winner winner) {
+		System.out.println(winner.getWinnerName() + "가 최종 우승했습니다.");
 	}
 }
