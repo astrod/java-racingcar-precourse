@@ -14,7 +14,7 @@ public class PlayerGroup {
 		this.players = initializePlayers(players);
 	}
 
-	private List<Player> initializePlayers(String players) { // TODO 이름은 다섯 글자 이하만 가능하다
+	private List<Player> initializePlayers(String players) {
 		if (players == null) {
 			throw new IllegalArgumentException("플레이어 정보가 없습니다");
 		}

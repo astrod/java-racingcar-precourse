@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class Winner {
-	public static final String DELIMITER = ", ";
+	private static final String DELIMITER = ", ";
 	private final List<Player> winner;
 
 	public Winner(List<Player> players) {
