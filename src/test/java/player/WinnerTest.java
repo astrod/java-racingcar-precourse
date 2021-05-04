@@ -28,8 +28,8 @@ class WinnerTest {
 	void getWinnerNameWithoutDelimiterIfWinnerIsOnlyOne() {
 		// given
 		List<Player> players = new ArrayList<>();
-		addPlayer(players, "testUser", 2);
-		addPlayer(players, "testUser2", 1);
+		addPlayer(players, "user", 2);
+		addPlayer(players, "user2", 1);
 
 		Winner winner = new Winner(players);
 
@@ -37,7 +37,7 @@ class WinnerTest {
 		String result = winner.getWinnerName();
 
 		// then
-		assertThat(result).isEqualTo("testUser");
+		assertThat(result).isEqualTo("user");
 	}
 
 	@Test
@@ -45,8 +45,8 @@ class WinnerTest {
 	void getWinnerNameWithDelimiterIfWinnerIsSeveral() {
 		// given
 		List<Player> players = new ArrayList<>();
-		addPlayer(players, "testUser", 1);
-		addPlayer(players, "testUser2", 1);
+		addPlayer(players, "user", 1);
+		addPlayer(players, "user2", 1);
 
 		Winner winner = new Winner(players);
 
@@ -54,7 +54,7 @@ class WinnerTest {
 		String result = winner.getWinnerName();
 
 		// then
-		assertThat(result).isEqualTo("testUser, testUser2");
+		assertThat(result).isEqualTo("user, user2");
 	}
 
 	private void addPlayer(List<Player> players, String name, int position) {

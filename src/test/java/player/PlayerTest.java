@@ -27,10 +27,10 @@ class PlayerTest {
 		// given
 
 		// when
-		Player player = new Player("   userTe st   ", 0);
+		Player player = new Player("   us er   ", 0);
 
 		// then
-		assertThat(player.getName()).isEqualTo("userTe st");
+		assertThat(player.getName()).isEqualTo("us er");
 	}
 
 	@Test
@@ -59,5 +59,16 @@ class PlayerTest {
 
 		// then
 		assertThat(player.getPosition()).isEqualTo(1);
+	}
+
+	@Test
+	@DisplayName("플레이어의 이름이 다섯 글자를 넘으면 에러를 반환한다")
+	void nameCannotBeAcceptedIfNameIsGreaterThan5() {
+		// given
+
+		// when
+
+		// then
+		assertThatIllegalArgumentException().isThrownBy(() -> new Player("Over5UserName", 0));
 	}
 }

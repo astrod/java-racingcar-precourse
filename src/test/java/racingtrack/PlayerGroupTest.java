@@ -41,10 +41,10 @@ class PlayerGroupTest {
 		// given
 
 		// when
-		PlayerGroup result = new PlayerGroup("testUser");
+		PlayerGroup result = new PlayerGroup("user");
 
 		// then
-		assertThat(result.getPlayers().get(0).getName()).isEqualTo("testUser");
+		assertThat(result.getPlayers().get(0).getName()).isEqualTo("user");
 		assertThat(result.getPlayers().size()).isEqualTo(1);
 	}
 
@@ -54,11 +54,11 @@ class PlayerGroupTest {
 		// given
 
 		// when
-		PlayerGroup result = new PlayerGroup("testUser,testUser2");
+		PlayerGroup result = new PlayerGroup("user,user2");
 
 		// then
-		assertThat(result.getPlayers().get(0).getName()).isEqualTo("testUser");
-		assertThat(result.getPlayers().get(1).getName()).isEqualTo("testUser2");
+		assertThat(result.getPlayers().get(0).getName()).isEqualTo("user");
+		assertThat(result.getPlayers().get(1).getName()).isEqualTo("user2");
 		assertThat(result.getPlayers().size()).isEqualTo(2);
 	}
 
@@ -68,7 +68,7 @@ class PlayerGroupTest {
 		given(random.nextInt(anyInt())).willReturn(4);
 
 		// given
-		PlayerGroup playerGroup = new PlayerGroup("testUser,testUser2,testUser3");
+		PlayerGroup playerGroup = new PlayerGroup("user,user2,user3");
 
 		// when
 		playerGroup.advance(random);
@@ -85,12 +85,12 @@ class PlayerGroupTest {
 		given(random.nextInt(anyInt())).willReturn(4);
 
 		// given
-		PlayerGroup playerGroup = new PlayerGroup("testUser,testUser2,testUser3");
+		PlayerGroup playerGroup = new PlayerGroup("user,user2,user3");
 
 		// when
 		Winner winner = playerGroup.generateWinner();
 
 		// then
-		assertThat(winner.getWinnerName()).isEqualTo("testUser, testUser2, testUser3");
+		assertThat(winner.getWinnerName()).isEqualTo("user, user2, user3");
 	}
 }

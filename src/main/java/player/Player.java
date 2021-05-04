@@ -10,7 +10,11 @@ public class Player {
 	private int position;
 
 	public Player(String name, int position) {
-		this.name = name.trim();
+		String playerName = name.trim();
+		if (playerName.length() > 5) {
+			throw new IllegalArgumentException("자동차의 이름은 5글자 이내여야 합니다. input === " + playerName);
+		}
+		this.name = playerName;
 		this.position = position;
 	}
 
